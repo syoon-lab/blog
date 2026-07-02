@@ -7,9 +7,6 @@
 - [민원 전화에서 시작한 얼렁뚱땅 앱 개발기 - AI챔피언 공개용](posts/fishery-regulation-ai-champion/)
 - [민원 전화에서 시작한 얼렁뚱땅 앱 개발기 - 국립수산과학원 공개용](posts/fishery-regulation-nifs/)
 
-AI챔피언 공개용 Markdown은 [posts/fishery-regulation-ai-champion/index.md](posts/fishery-regulation-ai-champion/index.md)에 보관합니다.
-국립수산과학원 공개용 Markdown은 [posts/fishery-regulation-nifs/index.md](posts/fishery-regulation-nifs/index.md)에 보관합니다.
-
 ## Web
 
 AI챔피언 공개용:
