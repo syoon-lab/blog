@@ -5,7 +5,7 @@
 ## Posts
 
 - [민원 전화에서 시작한 얼렁뚱땅 앱 개발기 - AI챔피언 공개용](posts/fishery-regulation-ai-champion/)
-- [민원 전화에서 시작한 얼렁뚱땅 앱 개발기 - 국립수산과학원 공개용](posts/fishery-regulation-nifs/)
+- [민원 전화에서 시작한 얼렁뚱땅 앱 개발기 - 국립수산과학원 공개용](https://fishery-regulation.vercel.app/blog/) (원본: fishery-regulation 레포 `public/blog/index.html`)
 
 ## Web
 
