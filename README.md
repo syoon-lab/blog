@@ -4,10 +4,16 @@
 
 ## Posts
 
-- [민원 전화에서 시작한 얼렁뚱땅 앱 개발기](posts/fishery-regulation-ai-champion.md)
+- [민원 전화에서 시작한 얼렁뚱땅 앱 개발기](posts/fishery-regulation-ai-champion/)
+
+원문 Markdown은 [posts/fishery-regulation-ai-champion.md](posts/fishery-regulation-ai-champion.md)에 보관합니다.
 
 ## Web
 
 GitHub Pages 배포 후에는 아래 주소로 볼 수 있습니다.
 
 <https://syoon-lab.github.io/blog/>
+
+첫 글 직접 링크:
+
+<https://syoon-lab.github.io/blog/posts/fishery-regulation-ai-champion/>

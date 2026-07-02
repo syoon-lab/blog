@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>민원 전화에서 시작한 얼렁뚱땅 앱 개발기 | syoon-lab blog</title>
+    <meta
+      name="description"
+      content="수산자원 금어기·금지체장 조회 앱을 AI 챔피언 고급과정 실습 과제로 만든 기록입니다."
+    />
+    <meta property="og:title" content="민원 전화에서 시작한 얼렁뚱땅 앱 개발기" />
+    <meta
+      property="og:description"
+      content="민원 전화에서 시작해 실제 업무 현장에 닿은 작은 AI 활용 사례 기록입니다."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://syoon-lab.github.io/blog/posts/fishery-regulation-ai-champion/" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172033;
+        --muted: #5d6678;
+        --line: #dde3ec;
+        --paper: #ffffff;
+        --bg: #f6f3ee;
+        --accent: #0a3d62;
+        --soft: #eef3f7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR",
+          "Segoe UI", sans-serif;
+        line-height: 1.75;
+      }
+
+      a {
+        color: var(--accent);
+        font-weight: 700;
+        text-underline-offset: 3px;
+      }
+
+      .page {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 56px 22px 72px;
+      }
+
+      article {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: clamp(28px, 6vw, 56px);
+        box-shadow: 0 18px 45px rgba(23, 32, 51, 0.08);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--accent);
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 0 0 28px;
+        font-size: clamp(2rem, 7vw, 3.2rem);
+        line-height: 1.18;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 0 0 1.15rem;
+        word-break: keep-all;
+      }
+
+      .questions {
+        border-left: 4px solid var(--accent);
+        padding: 2px 0 2px 18px;
+        margin: 4px 0 1.4rem;
+        font-weight: 700;
+        color: #313b4f;
+      }
+
+      .note {
+        margin: 1.4rem 0;
+        padding: 18px 20px;
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .note p:last-child,
+      .questions p:last-child {
+        margin-bottom: 0;
+      }
+
+      .links {
+        margin: 1.6rem 0;
+        padding: 18px 20px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      ul {
+        margin: 0.4rem 0 0;
+        padding-left: 1.2rem;
+      }
+
+      footer {
+        margin-top: 2.2rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding: 0;
+        }
+
+        article {
+          min-height: 100vh;
+          border-width: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <article>
+        <p class="eyebrow">AI 챔피언 고급과정 실습 사례</p>
+        <h1>민원 전화에서 시작한 얼렁뚱땅 앱 개발기</h1>
+
+        <p>전화벨이 울린다. 수화기 너머의 질문은 대개 비슷하다.</p>
+
+        <div class="questions">
+          <p>"이 어종은 지금 잡아도 되나요?"</p>
+          <p>"금어기가 언제부터 언제까지인가요?"</p>
+          <p>"몇 센티미터 이하는 안 되나요?"</p>
+          <p>"우리 지역도 해당되나요?"</p>
+        </div>
+
+        <p>질문은 단순해 보이지만, 답을 찾는 과정은 그렇지 않다. 포획 금지 기간과 금지체장은 수산자원관리법 시행령 별표뿐 아니라 해양수산부 고시, 공고, 지자체별 고시에 흩어져 있다. TAC 참여 업종에 대한 한시적 적용 유예처럼 특정 기간과 대상에만 적용되는 예외도 있어, 기억에만 의존해 답하기 어렵다. 같은 어종이라도 묻는 사람이 어떤 업종에 속하는지, 오늘이 며칠인지에 따라 답이 달라진다.</p>
+
+        <div class="note">
+          <p><strong>참고: TAC란?</strong></p>
+          <p>TAC는 어종별 총허용어획량을 정해 관리하는 제도로서, 참여하는 업종에 따라 금어기나 금지체장 적용 방식이 달라지는 경우가 있어 민원 안내 시 별도 확인이 필요하다.</p>
+        </div>
+
+        <p>특히 6월 말과 7월 초는 TAC 어기가 바뀌고 새로운 고시와 공고가 이어지는 시기다. 문의가 몰리면 그때마다 자료를 다시 찾아 대조하는 일이 반복되었다. 정확하게 안내하려면 꼭 필요한 과정이었지만, 같은 일을 되풀이하다 보니 부담도 적지 않았다.</p>
+
+        <p>그러던 중 AI 챔피언 고급과정에서 실습 과제를 만들 기회가 생겼다. 처음부터 거창한 서비스를 구상한 것은 아니다. 내가 매번 불편하게 느끼던 일을 조금 줄여보고 싶었을 뿐이다. 어종 이름만 검색하면 금어기, 금지체장, 출처를 한 화면에서 볼 수 있으면 좋겠다 — 그 한 문장이 출발점이었다.</p>
+
+        <p>화면보다 먼저 정리해야 할 것은 데이터였다. 민원 안내에서 중요한 것은 보기 좋은 버튼보다, 오늘 기준으로 맞는 답을 같은 근거에서 꺼내는 일이었기 때문이다. 앱은 React와 TypeScript 기반으로 만들고, Vite로 개발 환경을 구성했다. 어종별 규정은 별도의 데이터 파일에 구조화해 이름, 학명, 분류, 금어기, 금지체장 정보를 담았다. 단순히 날짜나 수치만 보여주는 것이 아니라, 그 내용이 시행령 별표인지, 해양수산부 고시인지, 공고문인지까지 함께 확인할 수 있게 했다.</p>
+
+        <p>AI는 초안 작성, 데이터 구조 설계, 코드 생성 보조에 활용했다. 어떤 정보를 어종 단위로 묶을지, 검색과 필터 기능을 어떻게 구성할지 정리하는 데 도움을 받았다. 다만 행정 정보의 특성상 AI가 만든 내용을 그대로 쓰지는 않았다. 실제 원문을 확인하면서 금어기, 금지체장, 적용 대상, 시행일을 하나하나 검토해 반영했다.</p>
+
+        <p>가장 신경 쓴 것은 보기 좋은 화면이 아니라 데이터의 정확성이었다. 공식 출처 목록을 따로 관리하고, 앱에 입력된 출처명이 이 목록과 일치하는지 확인하는 스크립트를 만들었다. 빌드 전에 검증이 먼저 실행되도록 해, 누락이나 오입력을 조기에 잡아낼 수 있게 했다.</p>
+
+        <p>실무에서 가장 유용한 기능은 "오늘 기준으로 무엇이 되고 안 되는지"를 바로 보여주는 것이다. 금어기 규정은 날짜가 핵심이라, 같은 어종이라도 조회일에 따라 안내 내용이 달라진다. 앱에서는 현재 날짜 기준의 적용 여부를 보여주고, 필요하면 특정 날짜를 입력해 그날의 포획 가능 여부도 확인할 수 있게 했다. 담당자가 누구든, 언제 조회하든 같은 근거로 같은 답을 안내할 수 있게 된 것이다.</p>
+
+        <p>화면 구성은 단순하게 잡았다. 어종명을 검색하고, 어류·갑각류·패류·해조류 등 분류별로 필터링할 수 있게 했다. 금어기와 금지체장은 구분해 표시했고, 출처는 각 항목 옆에서 바로 확인할 수 있게 배치했다. 민원 응대 중 빠르게 보는 것이 목적이었기에 복잡한 기능보다 속도와 가독성을 우선했다.</p>
+
+        <div class="links">
+          <p><strong>구현한 앱과 코드</strong></p>
+          <ul>
+            <li>GitHub 저장소: <a href="https://github.com/syoon-lab/fishery-regulation">https://github.com/syoon-lab/fishery-regulation</a></li>
+            <li>서비스 주소: <a href="https://fishery-regulation.vercel.app">https://fishery-regulation.vercel.app</a></li>
+          </ul>
+        </div>
+
+        <p>처음에는 그저 실습 과제였다. 그런데 예상하지 못한 연락을 받았다. 해양수산부 수산자원정책과에서 이 앱을 민원 안내에 활용하고 싶다는 내용이었다. 새로운 고시와 공고가 쏟아져 문의가 집중되는 시기에, 그곳의 담당자들도 나와 같은 어려움을 겪고 있었던 것이다.</p>
+
+        <p>가장 먼저 든 생각은 이랬다. 내가 불편해서 만든 것이 다른 사람에게도 필요했구나. 기술적으로 복잡한 시스템도 아니었고, AI가 모든 것을 자동으로 해결해 준 것도 아니었다. 중요한 것은 현장의 문제를 구체적으로 알고 있었다는 점이다. 사람들이 무엇을 반복해서 묻는지, 담당자는 왜 답변에 시간이 걸리는지, 어떤 근거가 함께 제시되어야 신뢰할 수 있는지 — 그것을 알고 있었기에 필요한 기능을 작게, 그러나 정확하게 만들 수 있었다.</p>
+
+        <p>AI 활용의 의미도 다시 생각하게 되었다. AI는 거대한 혁신 사업에서만 가치를 내는 것이 아니다. 매일 반복되는 업무, 자주 찾는 자료, 담당자의 머릿속에 흩어져 있는 절차를 정리하는 데에도 충분히 힘을 발휘한다. 특히 행정에서는 정확한 정보를 빠르게 찾는 일 자체가 하나의 서비스가 된다.</p>
+
+        <p>물론 보완할 점은 남아 있다. 규정은 계속 바뀌므로, 새 고시가 나올 때마다 데이터를 갱신하고 기준일을 관리하는 체계를 갖추는 일이 앞으로의 과제다. 화면을 만드는 것보다 그 안의 내용을 계속 정확하게 유지하는 일이 더 어렵다는 것을, 만들고 나서야 실감하고 있다.</p>
+
+        <p>조용탁 수석님께서 아주 작은 사례라도 있으면 기록으로 남겨보라고 조언해 주셔서, 교육을 마치고 부산으로 돌아가는 KTX 안에서 이렇게 글로 남겨본다. 작은 문제의식에서 출발한 도구가 실제 업무 현장에 가 닿는 것을 지켜본 일 — 그것만으로도 이번 경험은 충분히 의미 있었다.</p>
+
+        <footer>
+          <p>2026. 7. 1.<br />국립수산과학원 연근해자원과 윤석진</p>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>
